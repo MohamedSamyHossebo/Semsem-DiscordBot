@@ -20,7 +20,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
             // لو بتختبر في سيرفر معين اختار applicationGuildCommands، وإلا للتطبيق كامل applicationCommands
             Routes.applicationGuildCommands(
                 process.env.CLIENT_ID,
-                process.env.GUILD_ID    // احتفظ بمعرف السيرفر للتجارب
+                process.env.GUILD_ID  
             ),
             { body: commands }
         );
