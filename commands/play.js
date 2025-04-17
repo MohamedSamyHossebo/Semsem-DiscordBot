@@ -6,14 +6,14 @@ module.exports = {
         .setDescription('Play a song from YouTube, Spotify, or SoundCloud')
         .addStringOption(option =>
             option.setName('query')
-                .setDescription('Song URL or name')
+                .setDescription('Track URL or name')
                 .setRequired(true)
         ),
 
     async execute(interaction, client) {
         const query = interaction.options.getString('query');
         if (!query) {
-            return interaction.reply({ content: '❌ You must provide a song name or URL!', ephemeral: true });
+            return interaction.reply({ content: '❌ You must provide a track name or URL!', ephemeral: true });
         }
         const voiceChannel = interaction.member.voice.channel;
         if (!voiceChannel) {
@@ -40,7 +40,7 @@ module.exports = {
                 if (queue.id === interaction.guildId) {
                     interaction.followUp(
                         `🟢 Added to queue: **${song.name}** \`${song.formattedDuration}\`\n ` +
-                        `🔢 Songs in queue: ${queue.songs.length}`
+                        `🔢 Tracks in queue: ${queue.songs.length}`
                     );
                     client.distube.removeListener('addSong', onAdd);
                 }
@@ -55,9 +55,9 @@ module.exports = {
         } catch (err) {
             console.error(err);
             if (interaction.replied) {
-                interaction.editReply({ content: '❌ An error occurred while trying to play the song.' });
+                interaction.editReply({ content: '❌ An error occurred while trying to play the track.' });
             } else {
-                interaction.reply({ content: '❌ An error occurred while trying to play the song.', ephemeral: true });
+                interaction.reply({ content: '❌ An error occurred while trying to play the track.', ephemeral: true });
             }
         }
     }
