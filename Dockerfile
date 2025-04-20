@@ -17,3 +17,5 @@ CMD ["node", "index.js"]
 
 # Install FFmpeg
 RUN apt-get update && apt-get install -y ffmpeg
+# Run deploy-commands script before starting the bot
+RUN node deploy-commands.js
