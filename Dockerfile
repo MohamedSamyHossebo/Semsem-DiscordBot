@@ -14,3 +14,6 @@ RUN npm install
 
 # تشغيل البوت
 CMD ["node", "index.js"]
+
+# Install FFmpeg
+RUN apt-get update && apt-get install -y ffmpeg
